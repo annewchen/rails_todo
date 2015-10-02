@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    render 'new', layout: false
   end
 
   def edit
@@ -21,7 +22,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to items_path
+      render json: @item
     else
       render 'new'
     end
